@@ -33,6 +33,15 @@ namespace projectY.Prasentation_Layer
         protected global::System.Web.UI.WebControls.TextBox TextBox2;
 
         /// <summary>
+        /// EmailSignIn denetimi.
+        /// </summary>
+        /// <remarks>
+        /// Otomatik üretilmiş alan.
+        /// Değiştirmek için, alan bildirimini tasarımcı dosyasından arka plan kod dosyasına taşıyın.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox EmailSignIn;
+
+        /// <summary>
         /// TextBox1 denetimi.
         /// </summary>
         /// <remarks>
@@ -42,6 +51,15 @@ namespace projectY.Prasentation_Layer
         protected global::System.Web.UI.WebControls.TextBox TextBox1;
 
         /// <summary>
+        /// PasswordSignIn denetimi.
+        /// </summary>
+        /// <remarks>
+        /// Otomatik üretilmiş alan.
+        /// Değiştirmek için, alan bildirimini tasarımcı dosyasından arka plan kod dosyasına taşıyın.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox PasswordSignIn;
+
+        /// <summary>
         /// Button1 denetimi.
         /// </summary>
         /// <remarks>
@@ -49,5 +67,14 @@ namespace projectY.Prasentation_Layer
         /// Değiştirmek için, alan bildirimini tasarımcı dosyasından arka plan kod dosyasına taşıyın.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button1;
+
+        /// <summary>
+        /// ButtonSignIn denetimi.
+        /// </summary>
+        /// <remarks>
+        /// Otomatik üretilmiş alan.
+        /// Değiştirmek için, alan bildirimini tasarımcı dosyasından arka plan kod dosyasına taşıyın.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonSignIn;
     }
 }

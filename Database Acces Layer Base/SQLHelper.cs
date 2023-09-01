@@ -12,7 +12,7 @@ namespace projectY //eksik yol ama çalışıyor :) // çağların notu : bu cla
     public sealed class SQLHelper
     {
 
-
+        
         #region SqlHelper
         public static int ExecuteNonQuery(SqlConnection connection, CommandType commandType, string commandText, params SqlParameter[] commandParameters)
         {
@@ -39,7 +39,7 @@ namespace projectY //eksik yol ama çalışıyor :) // çağların notu : bu cla
             }
 
         }
-
+          
         public static int ExecuteNonQuery(string connectionString, CommandType commandType, string commandText, params SqlParameter[] parms) //connectionstring = -benim db adresim- , commandtext = save_user , commandtype = storedprocedure(4) , sqlparameter = dizide 2 parametre tutuluyor.
         {
             // burada sql sorgusau açılır ve usin deiğimye işi bitince kapatılır
@@ -72,9 +72,9 @@ namespace projectY //eksik yol ama çalışıyor :) // çağların notu : bu cla
         //bu yapı sayesinde bütün bu kolaylıklar oluyor bu yapı GetFrame olarak belirlediğimiz yapı içerisinde ki sayı kadar meod geri giderak dahadoğrus geri gitmiyor tazılan kodlardan (tutulan geçmis datasından) bu methodun verilerine method info sayesinde alır.
         public static MethodInfo GetCallerMethod() //GetCallerMethod bir MethodInfo classına koyduğumuz isim yani biz yazdık  // MethodInfo >> Bir metodun niteliklerini keşfeder ve metod meta verilerine erişim sağlar.
         {
-            var trace = new StackTrace();
-            var vMethod = (MethodInfo)trace.GetFrame(2).GetMethod(); 
-            return vMethod;
+            var trace = new StackTrace(); // buraya gelinceye kadarki metotların içindeki veriler bunun içinde tutulacak. ctrl+z ctrl+y nasıl ki ileri gerinin bilgisini getiriyorsa bu bilgi stack trace ile tutulur.
+            var vMethod = (MethodInfo)trace.GetFrame(2).GetMethod();  //bu satırda veri tipi çevirmesi yapılıyor.Geri dönüş tipi >> MethodInfo >> veri tipi, metodun özelliklerini göstrilmesini sağlar.
+            return vMethod;  //bundan sonrasında DALBase sınıfındaki ExecuteNonQuery methoduna(fonksiyon) geri dönerek vMethod u info (MethodInfo değişken türündeki) değişkenine atar.
         }
 
 
@@ -88,12 +88,13 @@ namespace projectY //eksik yol ama çalışıyor :) // çağların notu : bu cla
 
 
 
-    //bu method içerisinde paremetre üretilir, bu kod buloğu sayesinde sql ile işimiz kısmen birazdaha  azaltılmış olur.
+    //bu metod içerisinde parametre üretilir, bu kod bloğu sayesinde sql ile işimiz kısmen biraz daha  azaltılmış olur.
     public class SQLParameterGenerator
     {
-        public static SqlParameter[] GenerateParam(MethodInfo Method, params object[] Values)
+        public static SqlParameter[] GenerateParam(MethodInfo Method, params object[] Caglar) // MethodInfo Method = burada prosedürün değişken isimlerini aldım bunu "StackTrace" yardımıyla yaptık.
+                                                                                              // params object[] Caglar= burada ise tarayıcımızdan girdiğimiz email ve password verilerini aldık.
         {
-            SqlParameter[] sqlParam = new SqlParameter[Values.Length];
+            SqlParameter[] sqlParam = new SqlParameter[Caglar.Length];
             // Generate command parameters
             int paramIndex = 0;
             ParameterInfo[] methodParameters = Method.GetParameters();  //burayı Çağlar'a sor
@@ -101,7 +102,7 @@ namespace projectY //eksik yol ama çalışıyor :) // çağların notu : bu cla
             {
                 SqlParameter parameter = new SqlParameter();
                 parameter.ParameterName = "@" + paramInfo.Name; //paramInfo.Name = parametrenin adı buraya düşer. >> "@" + paramInfo.Name = @email ve @password (çıktılar)
-                parameter.Value = Values[paramIndex];   //parameter.value = ecemtekim06@gmail.com(paramindex = 0) ve 454(şifrenin kendisi)(paramindex = 1)
+                parameter.Value = Caglar[paramIndex];   //parameter.value = ecemtekim06@gmail.com(paramindex = 0) ve 454(şifrenin kendisi)(paramindex = 1)
                 sqlParam[paramIndex] = parameter;  //parameter = @email(paramindex = 0) ve @password(paramindex = 1)
                 paramIndex++;
             }

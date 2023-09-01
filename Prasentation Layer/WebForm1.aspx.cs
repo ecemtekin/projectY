@@ -14,10 +14,17 @@ namespace projectY.Prasentation_Layer
         {
 
         }
+        
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            kullanicilar.save_user(TextBox2.Text,TextBox1.Text ); 
+            kullanicilar.Name = TextBox2.Text;
+            kullanicilar.save_user(kullanicilar.Name, TextBox1.Text ); 
+        }
+
+        protected void ButtonSignIn_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

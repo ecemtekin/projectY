@@ -19,7 +19,7 @@ namespace projectY
             set { _connectionString = value; }
         }
 
-
+        // bu bir açıklamadır.
         #endregion
 
         #region Constructor
@@ -45,6 +45,14 @@ namespace projectY
             return SQLHelper.ExecuteNonQuery(_connectionString, CommandType.StoredProcedure, info.Name, SQLParameterGenerator.GenerateParam(info, prms)); //info = void save_user 
         }
         // SQLParameterGenerator.GenerateParam(info, prms) bu yapı değiskenlein başına @ işareti getirerek stored procedure de kullanımına hazırlar.  
+        
+        protected int Matching (params object[] prms)
+        {
+            MethodInfo info = SQLHelper.GetCallerMethod();
+            return SQLHelper.
+
+        }
+
         #endregion
     }
 }

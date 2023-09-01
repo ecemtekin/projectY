@@ -9,6 +9,7 @@ namespace projectY
 
     {
         public int sonuc = 0;
+        public int sonuc2 = 0;
         #region Properties
         //variables
         private string Vname;
@@ -35,11 +36,26 @@ namespace projectY
             {
                 sonuc = ExecuteNonQuery(email, password);
             }
-            catch (Exception ecem)
+            catch (Exception ex)
             {
 
             }
 
+            //ecem
+
+        }
+
+        public void sign_in (string email, string password)
+        {
+
+            try
+            {
+                sonuc2 = Matching(email, password);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }
